@@ -1,24 +1,43 @@
-# README
+# Wallet API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails 8.1 (API) + PostgreSQL.
 
-Things you may want to cover:
+## Kebutuhan
 
-* Ruby version
+- Ruby 3.3
+- PostgreSQL 16
 
-* System dependencies
+## Environment variable
 
-* Configuration
+| Nama | Wajib | Default | Keterangan |
+|---|---|---|---|
+| `DB_PASSWORD` | tidak | `postgres` | Password user `postgres` |
+| `RAPIDAPI_KEY` | tidak | - | API key untuk `LatestStockPrice` |
 
-* Database creation
+## Menjalankan
 
-* Database initialization
+```
+bundle install
+bin/rails db:setup
+bin/rails server
+```
 
-* How to run the test suite
+Akun seed:
 
-* Services (job queues, cache servers, search engines, etc.)
+| Email | Password |
+|---|---|
+| budi@mail.com | password123 |
+| sari@mail.com | password123 |
 
-* Deployment instructions
+## LatestStockPrice
 
-* ...
+Lokasi: `lib/latest_stock_price`. Konfigurasi: `config/initializers/latest_stock_price.rb`.
+
+```ruby
+client = LatestStockPrice::Client.new
+client.price_all
+client.price("RELIANCE")
+client.prices(["RELIANCE", "TCS"])
+```
+
+API `suneetk92/latest-stock-price` di RapidAPI sudah tidak tersedia (`404 API doesn't exists`).
