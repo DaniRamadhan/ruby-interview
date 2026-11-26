@@ -8,6 +8,13 @@ Rails.application.routes.draw do
   post "sign_in" => "sessions#create", as: :sign_in
   delete "sign_out" => "sessions#destroy", as: :sign_out
 
+  get "wallet" => "wallets#mine", as: :my_wallet
+  get  "wallet/transactions" => "wallets#transactions", as: :my_wallet_transactions
+  post "wallet/deposit" => "wallets#deposit", as: :deposit
+  post "wallet/withdraw" => "wallets#withdraw", as: :withdraw
+  post "wallet/transfer" => "wallets#transfer", as: :transfer
+  get  "wallets" => "wallets#index", as: :wallets
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

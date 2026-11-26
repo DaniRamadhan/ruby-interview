@@ -11,4 +11,8 @@ class Wallet < ApplicationRecord
   def balance
     incoming_transactions.sum(:amount) - outgoing_transactions.sum(:amount)
   end
+
+  def transactions
+    Transaction.where(source_wallet_id: id).or(Transaction.where(target_wallet_id: id))
+  end
 end
