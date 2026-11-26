@@ -77,6 +77,19 @@ Opsi kolom di migration:
   add_check_constraint :transactions, "amount > 0", name: "amount_positive"
 
 
+CEK KODE (pengganti "compile")
+------------------------------
+ruby -c app/models/user.rb      # cek sintaks 1 file saja
+rails zeitwerk:check            # muat semua file app/ -> "All is good!" (paling mirip mvn compile)
+rails c --sandbox               # coba perilaku langsung
+bin/rubocop                     # cek gaya penulisan
+bin/rubocop -a                  # perbaiki gaya otomatis
+rails test                      # jalankan test
+
+Ruby tidak di-compile, jadi error seperti salah nama method
+baru muncul saat file dimuat / baris dijalankan.
+
+
 CONSOLE
 -------
 User.count

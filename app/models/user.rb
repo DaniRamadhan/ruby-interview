@@ -1,2 +1,12 @@
 class User < ApplicationRecord
+  include HasWallet
+
+  has_secure_password
+  has_many :sessions, dependent: :destroy
+
+  normalizes :email, with: ->(email) { email.strip.downcase }
+
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :password, length: { minimum: 6 }, allow_nil: true
 end
